@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "react-app"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "semi": "off",
+    "prettier/prettier": "warn",
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": {
+          "delimiter": "none",
+          "requireLast": false
+        },
+        "singleline": {
+          "delimiter": "comma",
+          "requireLast": false
+        }
+      }
+    ]
+  }
+}
