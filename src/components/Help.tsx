@@ -5,7 +5,7 @@ import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import VirtualKeyboard from "./VirtualKeyboard";
 import {KEY_SIZE} from "./VirtualKeyboardKey";
 
-const HEIGHT = KEY_SIZE * 5.5 + 'vw'
+const HEIGHT = KEY_SIZE * 6 + 'px'
 type Props = {
     toggleHelp: () => void
     show: boolean

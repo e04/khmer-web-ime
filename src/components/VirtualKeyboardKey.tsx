@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Box, Typography, Grid, Paper, Button} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 
-export const KEY_SIZE = 5
+export const KEY_SIZE = 50
 
 type Props = {
     keyType: string
@@ -13,20 +13,20 @@ type Props = {
 
 const useStyle = makeStyles({
     root: {
-        height: KEY_SIZE + 'vw',
-        width: KEY_SIZE + 'vw',
+        height: KEY_SIZE + 'px',
+        width: KEY_SIZE + 'px',
         cursor: 'default',
     },
     button: {
-        height: KEY_SIZE * 0.5 + 'vw',
-        width: KEY_SIZE * 0.5 + 'vw',
+        height: KEY_SIZE * 0.5 + 'px',
+        width: KEY_SIZE * 0.5 + 'px',
         minWidth: 'unset',
         padding: 0
     },
     label: {
         'font-family': `'Arial','Hanuman', serif`,
-        lineHeight: KEY_SIZE * 0.5 + 'vw',
-        fontSize: KEY_SIZE * 0.3 + 'vw'
+        lineHeight: KEY_SIZE * 0.5 + 'px',
+        fontSize: KEY_SIZE * 0.3 + 'px'
     },
 })
 
@@ -63,7 +63,7 @@ const VirtualKeyboardKey: React.FC<Props> = (props) => {
                 </Grid>
                 <Grid container item justify="space-between">
                     <Grid item>
-                        <Box style={{paddingLeft: KEY_SIZE * 0.1 + 'vw'}}>
+                        <Box style={{paddingLeft: KEY_SIZE * 0.1 + 'px'}}>
                             <Typography color="textSecondary" className={c.label}>
                                 {props.latin}
                             </Typography>
