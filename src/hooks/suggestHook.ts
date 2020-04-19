@@ -19,7 +19,7 @@ const useSuggest = (
     const [selectWordIndex, setSelectWordIndex] = useState(-1)
 
     const enterSuggest = useCallback(
-        (index?: number) => {
+        (index: number) => {
             let targetWordIndex: number
             if (index == null) {
                 targetWordIndex = selectWordIndex

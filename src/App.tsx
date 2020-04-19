@@ -1,8 +1,8 @@
-import React, {useCallback, useRef, useState} from 'react'
-import {Box, Container, Grid, Typography} from '@material-ui/core'
+import React, {useCallback, useState} from 'react'
+import {Box, Container} from '@material-ui/core'
 import Editor from './components/Editor'
-import {Drawer} from '@material-ui/core';
 import Help from "./components/Help";
+import IncompatibleAlert from "./components/IncompatibleAlert";
 
 const isChrome = !!navigator.userAgent.match('Chrome')
 const isNotAndroid = !navigator.userAgent.match('Android')
@@ -23,11 +23,7 @@ const App: React.FC = () => {
                     <Help show={isOpenHelp} toggleHelp={toggleHelp}/>
                 </>
             ) : (
-                <Box>
-                    <Typography>
-                        This app only works Google Chrome on PC.
-                    </Typography>
-                </Box>
+                <IncompatibleAlert/>
             )}
         </Container>
     )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useCallback} from 'react'
 import {Box, Paper, ListItem, List} from '@material-ui/core'
 import useSuggest from '../hooks/suggestHook'
 import {makeStyles} from '@material-ui/styles'
@@ -53,6 +53,7 @@ const SuggestBox: React.FC<Props> = (props) => {
         left,
     }
 
+
     return (
         <>
             <Box
@@ -86,9 +87,8 @@ const SuggestBox: React.FC<Props> = (props) => {
                             <SuggestItem
                                 key={word}
                                 word={word}
-                                onClick={() => {
-                                    enterSuggest(index)
-                                }}
+                                index={index}
+                                enterSuggest={enterSuggest}
                                 isSelected={index === selectWordIndex}
                             />
                         ))}

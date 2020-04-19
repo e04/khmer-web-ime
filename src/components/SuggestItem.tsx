@@ -1,12 +1,13 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
-import { ListItem } from '@material-ui/core'
-import { lightBlue } from '@material-ui/core/colors'
+import {makeStyles} from '@material-ui/styles'
+import {ListItem} from '@material-ui/core'
+import {lightBlue} from '@material-ui/core/colors'
 
 type Props = {
     word: string
     isSelected: boolean
-    onClick: () => void
+    index: number
+    enterSuggest: (index: number) => void
 }
 
 const useStyle = makeStyles({
@@ -20,13 +21,16 @@ const useStyle = makeStyles({
 
 const SuggestItem: React.FC<Props> = (props) => {
     const c = useStyle(props.isSelected)
+    const onClick = () => {
+        props.enterSuggest(props.index)
+    }
     return (
         <ListItem
             className={c.root}
             dense={true}
             button={true}
             selected={props.isSelected}
-            onClick={props.onClick}
+            onClick={onClick}
         >
             {props.word}
         </ListItem>
