@@ -1,6 +1,6 @@
 import { KeyMap } from '../../keyMaps/interface'
 
-export const khmerKeyMap: KeyMap = {
+export const keyMap: KeyMap = {
     Backquote: { only: 'ឲ្យ', shift: 'ឱ' },
     Digit1: { only: '១', shift: '!' },
     Digit2: { only: '២', shift: 'ៗ' },
@@ -14,6 +14,7 @@ export const khmerKeyMap: KeyMap = {
     Digit0: { only: '០', shift: '៑' },
     Minus: { only: 'ឥ', shift: 'ឦ' },
     Equal: { only: 'ឪ', shift: 'ឫ' },
+    Backslash: { only: 'ឮ', shift: 'ឭ' },
     KeyQ: { only: 'ឆ', shift: 'ឈ' },
     KeyW: { only: 'ឹ', shift: 'ឺ' },
     KeyE: { only: 'េ', shift: 'ែ' },
@@ -26,7 +27,6 @@ export const khmerKeyMap: KeyMap = {
     KeyP: { only: 'ផ', shift: 'ភ' },
     BracketLeft: { only: 'ើ', shift: 'ឧ' },
     BracketRight: { only: 'ឿ', shift: 'ៀ' },
-    Backslash: { only: 'ឮ', shift: 'ឭ' },
     KeyA: { only: 'ា', shift: 'ៃ' },
     KeyS: { only: 'ស', shift: 'ាំ' },
     KeyD: { only: 'ដ', shift: 'ឌ' },

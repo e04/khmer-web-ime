@@ -1,6 +1,7 @@
 import React, {RefObject, useCallback, useEffect, useState} from 'react'
 import getCaretCoordinates from 'textarea-caret'
 
+const LOCAL_STORAGE_SAVE_KEY = 'LOCAL_STORAGE_SAVE_KEY'
 const useEditor = (
     $textarea: RefObject<HTMLTextAreaElement>
 ): [
@@ -8,10 +9,12 @@ const useEditor = (
     { x: number, y: number },
     (word: string) => void,
     (e: KeyboardEvent) => void,
+    () => void,
     () => void
 ] => {
     const [caretPosition, setCaretPosition] = useState({x: 0, y: 0})
     const [textareaValue, setTextareaValue] = useState('')
+
     useEffect(() => {
         const textarea = $textarea.current
         const calcCaretPosition = (e: Event) => {
@@ -26,6 +29,15 @@ const useEditor = (
             textarea?.removeEventListener('click', calcCaretPosition)
         }
     }, [$textarea, caretPosition])
+
+    useEffect(() => {
+        const saveData: string | null = localStorage.getItem(
+            LOCAL_STORAGE_SAVE_KEY
+        )
+        if (saveData) {
+            setTextareaValue(saveData)
+        }
+    }, [])
 
     const onWordSelected = useCallback(
         (word: string) => {
@@ -43,6 +55,7 @@ const useEditor = (
                 setTextareaValue(textareaValue + word)
             }
             textarea?.dispatchEvent(new Event('input'))
+            localStorage.setItem(LOCAL_STORAGE_SAVE_KEY, textareaValue)
         },
         [$textarea, textareaValue]
     )
@@ -101,6 +114,10 @@ const useEditor = (
         setTimeout(() => {
             $textarea.current?.dispatchEvent(new Event('click'))
         }, 0)
+    }, [$textarea])
+
+    const copyToClipBoard = useCallback(() => {
+        navigator.clipboard.writeText(textareaValue)
     }, [textareaValue])
 
     return [
@@ -109,6 +126,7 @@ const useEditor = (
         onWordSelected,
         onControlKeyDown,
         deleteAll,
+        copyToClipBoard
     ]
 }
 

@@ -9,6 +9,7 @@
   "rules": {
     "semi": "off",
     "prettier/prettier": "warn",
+    "@typescript-eslint/interface-name-prefix": 0,
     "@typescript-eslint/member-delimiter-style": [
       "error",
       {

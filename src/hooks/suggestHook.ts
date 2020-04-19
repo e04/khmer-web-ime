@@ -1,14 +1,14 @@
 import {useCallback, useEffect, useMemo, useState} from 'react'
 import KeyMapper from '../utils/keyMaps/KeyMapper'
 import {KeyTranslator} from '../utils/keyMaps/interface'
-import {khmerKeyMap} from '../utils/languages/khmer/keyMap'
+import {keyMap} from '../utils/languages/khmer/keyMap'
 import {WordSearcher} from '../utils/wordList/WordSearcher'
 import {wordList} from '../utils/languages/khmer/wordList'
 import {WordList} from '../utils/wordList/interface'
+import {dictionary} from "../utils/languages/khmer/dictionary";
 
-const keyMap: KeyTranslator = new KeyMapper(khmerKeyMap)
-
-const MAX_SUGGEST_COUNT = 8
+const keyTranslator: KeyTranslator = new KeyMapper(keyMap)
+const wordSearcher: WordSearcher = new WordSearcher(wordList, dictionary)
 
 const useSuggest = (
     onWordSelected: (word: string) => void,
@@ -17,7 +17,6 @@ const useSuggest = (
     const [inputText, setInputText] = useState('')
     const [suggestWords, setSuggestWord] = useState<WordList>([])
     const [selectWordIndex, setSelectWordIndex] = useState(-1)
-    const wordSearcher = useMemo(() => new WordSearcher(wordList), [])
 
     const enterSuggest = useCallback(
         (index?: number) => {
@@ -39,23 +38,10 @@ const useSuggest = (
 
     const search = useCallback(
         async (word: string) => {
-            const [prefixResult, similarResult] = await Promise.all([
-                (await wordSearcher.matchPrefix(word)).slice(
-                    0,
-                    MAX_SUGGEST_COUNT
-                ),
-                (await wordSearcher.matchSimilar(word)).slice(
-                    0,
-                    MAX_SUGGEST_COUNT
-                ),
-            ])
-            const mixed = Array.from(
-                new Set([...prefixResult, ...similarResult])
-            )
-            setSuggestWord(mixed)
+            setSuggestWord(await wordSearcher.search(word))
             setSelectWordIndex(-1)
         },
-        [wordSearcher]
+        []
     )
 
     const onDocumentKeyDown = useCallback(
@@ -69,6 +55,7 @@ const useSuggest = (
                     } else {
                         selectedWord = suggestWords[selectWordIndex]
                     }
+                    if (selectedWord === '') selectedWord = '\n'
                     onWordSelected(selectedWord)
                     setInputText('')
                     setSuggestWord([])
@@ -110,7 +97,7 @@ const useSuggest = (
                 case 'Shift':
                     return
                 default: {
-                    const newText = inputText + keyMap.translate(e)
+                    const newText = inputText + keyTranslator.translate(e)
                     setInputText(newText)
                     search(newText)
                 }

@@ -25,7 +25,8 @@ THE SOFTWARE.
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
-export const wordList: WordList = JSON.parse(`["បាន",
+export const wordList: WordList = JSON.parse(`[
+        "បាន",
         "ការ",
         "មាន",
         "ជា",
@@ -17934,4 +17935,5 @@ export const wordList: WordList = JSON.parse(`["បាន",
         "កាន់គំនិត",
         "កន្ទុយនាគ",
         "ប្រាជ្ញប្រាយ",
-        "សាយ័ណ្ហ"]`)
+        "សាយ័ណ្ហ"
+        ]`)

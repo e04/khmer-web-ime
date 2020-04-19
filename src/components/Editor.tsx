@@ -1,11 +1,13 @@
 import React, {useRef, forwardRef, useImperativeHandle} from 'react'
-import { Box, Paper} from '@material-ui/core'
+import {Box, Paper} from '@material-ui/core'
 import {makeStyles} from '@material-ui/styles'
 import SuggestBox from './SuggestBox'
 import useEditor from '../hooks/editorHook'
-import ToolBar from "./Toolbar";
+import ToolBar from './Toolbar'
 
-type Props = {}
+type Props = {
+    toggleHelp: () => void
+}
 
 const FONT_SIZE = '1.5rem'
 
@@ -16,7 +18,8 @@ const useStyles = makeStyles({
     textarea: {
         width: '100%',
         height: '100%',
-        'font-size': FONT_SIZE,
+        fontSize: FONT_SIZE,
+        overflow: 'hidden',
         border: 'none',
         '&:focus': {
             outline: 'none',
@@ -24,14 +27,14 @@ const useStyles = makeStyles({
     },
     box: {
         '&, & *': {
-            'font-family': `'Hanuman', serif`,
+            'font-family': `'Arial','Hanuman', serif`,
         },
         width: '100%',
         height: '100%',
-    }
+    },
 })
 
-const Editor: React.FC = () => {
+const Editor: React.FC<Props> = (props) => {
     const c = useStyles()
     const $textarea = useRef({} as HTMLTextAreaElement)
     const [
@@ -40,10 +43,15 @@ const Editor: React.FC = () => {
         onWordSelected,
         onControlKeyDown,
         deleteAll,
+        copyToClipBoard,
     ] = useEditor($textarea)
 
     return (
-        <Paper className={c.root} style={{position: 'relative'}} elevation={10}>
+        <Paper
+            className={c.root}
+            style={{position: 'relative'}}
+            elevation={10}
+        >
             <Box p={4} className={c.box} style={{position: 'relative'}}>
                 <textarea
                     className={c.textarea}
@@ -60,7 +68,8 @@ const Editor: React.FC = () => {
                     onControlKeyDown={onControlKeyDown}
                 />
             </Box>
-            <ToolBar deleteAll={deleteAll}/>
+            <ToolBar deleteAll={deleteAll} copyToClipBoard={copyToClipBoard}
+                     onClickHelpButton={props.toggleHelp}/>
         </Paper>
     )
 }

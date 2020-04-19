@@ -7,7 +7,7 @@ import SuggestItem from './SuggestItem'
 
 const OFFSET_Y = 26
 const OFFSET_X = 33
-
+const SUGGEST_BOX_Y_OFFSET = 45
 type Props = {
     x: number
     y: number
@@ -20,20 +20,22 @@ const useStyle = makeStyles({
     inputTextBox: {
         color: 'white',
         backgroundColor: lightBlue[800],
-        opacity: 0.8,
         borderRadius: '.25rem',
-        borderLeft: '1px solid black',
     },
     caret: {
         animation: '$blink 1s ease 0s infinite',
+        opacity: 1,
     },
     '@keyframes blink': {
-        '0%': {opacity: 0},
-        '49%': {opacity: 0},
-        '50%': {opacity: 1},
-        '99%': {opacity: 1},
-        '100%': {opacity: 0},
+        '0%': {opacity: 1},
+        '49%': {opacity: 1},
+        '50%': {opacity: 0},
+        '99%': {opacity: 0},
+        '100%': {opacity: 1},
     },
+    list: {
+        padding: 0
+    }
 })
 
 const SuggestBox: React.FC<Props> = (props) => {
@@ -67,20 +69,19 @@ const SuggestBox: React.FC<Props> = (props) => {
                     ...absolutePosition,
                     fontSize: props.fontSize,
                 }}
-                hidden={false}
             >
-                <Box className={c.inputTextBox} mb={1}>
+                <Box className={c.inputTextBox} mb={1} pb={1}>
                     {inputText}
                 </Box>
             </Box>
             <Paper
                 style={{
                     ...absolutePosition,
-                    top: top + 35,
+                    top: top + SUGGEST_BOX_Y_OFFSET,
                 }}
             >
                 <Box>
-                    <List>
+                    <List className={c.list}>
                         {suggestWords.map((word, index) => (
                             <SuggestItem
                                 key={word}
