@@ -16,10 +16,10 @@ const IncompatibleAlert: React.FC = () => {
 
             <Grid container justify="center" spacing={2}>
                 <Grid item xs={12}>
-                    <Typography variant="h2" align="center">
+                    <Typography variant="h4" align="center">
                         Your Browser is Unsupported
                     </Typography>
-                    <Typography variant="h5" align="center">
+                    <Typography variant="body1" align="center">
                         Please use the latest version of <a href="https://www.google.com/chrome/">Google Chrome</a> on PC.
                     </Typography>
                 </Grid>
