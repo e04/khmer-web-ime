@@ -68,8 +68,11 @@ const Editor: React.FC<Props> = (props) => {
                     onControlKeyDown={onControlKeyDown}
                 />
             </Box>
-            <ToolBar deleteAll={deleteAll} copyToClipBoard={copyToClipBoard}
-                     onClickHelpButton={props.toggleHelp}/>
+            <ToolBar
+                deleteAll={deleteAll}
+                copyToClipBoard={copyToClipBoard}
+                onClickHelpButton={props.toggleHelp}
+            />
         </Paper>
     )
 }

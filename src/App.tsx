@@ -1,8 +1,8 @@
-import React, {useCallback, useState} from 'react'
-import {Box, Container} from '@material-ui/core'
+import React, { useCallback, useState } from 'react'
+import { Box, Container } from '@material-ui/core'
 import Editor from './components/Editor'
-import Help from "./components/Help";
-import IncompatibleAlert from "./components/IncompatibleAlert";
+import Help from './components/Help'
+import IncompatibleAlert from './components/IncompatibleAlert'
 
 const isChrome = !!navigator.userAgent.match('Chrome')
 const isNotAndroid = !navigator.userAgent.match('Android')
@@ -14,16 +14,16 @@ const App: React.FC = () => {
         setHelpState(!isOpenHelp)
     }, [isOpenHelp])
     return (
-        <Container style={{overflow: 'hidden'}}>
+        <Container style={{ overflow: 'hidden' }}>
             {isCompatible ? (
                 <>
-                    <Box p={4} style={{width: '100%', height: '100vh'}}>
-                        <Editor toggleHelp={toggleHelp}/>
+                    <Box p={4} style={{ width: '100%', height: '100vh' }}>
+                        <Editor toggleHelp={toggleHelp} />
                     </Box>
-                    <Help show={isOpenHelp} toggleHelp={toggleHelp}/>
+                    <Help show={isOpenHelp} toggleHelp={toggleHelp} />
                 </>
             ) : (
-                <IncompatibleAlert/>
+                <IncompatibleAlert />
             )}
         </Container>
     )

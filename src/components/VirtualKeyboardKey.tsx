@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import {Box, Typography, Grid, Paper, Button} from "@material-ui/core";
-import {makeStyles} from "@material-ui/styles";
+import React, { useState } from 'react'
+import { Box, Typography, Grid, Paper, Button } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 
 export const KEY_SIZE = 50
 
@@ -21,25 +21,24 @@ const useStyle = makeStyles({
         height: KEY_SIZE * 0.5 + 'px',
         width: KEY_SIZE * 0.5 + 'px',
         minWidth: 'unset',
-        padding: 0
+        padding: 0,
     },
     label: {
         'font-family': `'Arial','Hanuman', serif`,
         lineHeight: KEY_SIZE * 0.5 + 'px',
-        fontSize: KEY_SIZE * 0.3 + 'px'
+        fontSize: KEY_SIZE * 0.3 + 'px',
     },
 })
 
 const triggerKeyDownEvent = (code: string, shiftKey: boolean) => {
     return () => {
-        const event = new KeyboardEvent("keydown", {
+        const event = new KeyboardEvent('keydown', {
             code,
             shiftKey,
         })
         document.dispatchEvent(event)
     }
 }
-
 
 const VirtualKeyboardKey: React.FC<Props> = (props) => {
     const c = useStyle()
@@ -51,8 +50,7 @@ const VirtualKeyboardKey: React.FC<Props> = (props) => {
         <Paper className={c.root} elevation={3}>
             <Grid container justify="space-between">
                 <Grid container item justify="space-between">
-                    <Grid item>
-                    </Grid>
+                    <Grid item></Grid>
                     <Grid item>
                         <Button onClick={triggerShiftKey} className={c.button}>
                             <Typography color="secondary" className={c.label}>
@@ -63,8 +61,11 @@ const VirtualKeyboardKey: React.FC<Props> = (props) => {
                 </Grid>
                 <Grid container item justify="space-between">
                     <Grid item>
-                        <Box style={{paddingLeft: KEY_SIZE * 0.1 + 'px'}}>
-                            <Typography color="textSecondary" className={c.label}>
+                        <Box style={{ paddingLeft: KEY_SIZE * 0.1 + 'px' }}>
+                            <Typography
+                                color="textSecondary"
+                                className={c.label}
+                            >
                                 {props.latin}
                             </Typography>
                         </Box>

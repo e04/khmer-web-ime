@@ -1,7 +1,7 @@
 import React from 'react'
-import {makeStyles} from '@material-ui/styles'
-import {ListItem} from '@material-ui/core'
-import {lightBlue} from '@material-ui/core/colors'
+import { makeStyles } from '@material-ui/styles'
+import { ListItem } from '@material-ui/core'
+import { lightBlue } from '@material-ui/core/colors'
 
 type Props = {
     word: string
@@ -15,7 +15,7 @@ const useStyle = makeStyles({
         cursor: 'pointer',
         fontSize: '1.25rem',
         transition: 'none',
-        paddingLeft: '.5rem'
+        paddingLeft: '.5rem',
     },
 })
 

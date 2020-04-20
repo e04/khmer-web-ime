@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles'
-import {grey} from '@material-ui/core/colors'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { grey } from '@material-ui/core/colors'
 
 const theme = createMuiTheme({
     palette: {
@@ -15,24 +15,22 @@ const theme = createMuiTheme({
         MuiBackdrop: {
             root: {
                 backgroundColor: 'transparent',
-                pointerEvents: 'none'
-            }
+                pointerEvents: 'none',
+            },
         },
         MuiDrawer: {
             root: {
-                pointerEvents: 'none'
-            }
-        }
-    }
+                pointerEvents: 'none',
+            },
+        },
+    },
 })
 ReactDOM.render(
     <React.StrictMode>
         <ThemeProvider theme={theme}>
-            <CssBaseline/>
-            <App/>
+            <CssBaseline />
+            <App />
         </ThemeProvider>
     </React.StrictMode>,
     document.getElementById('root')
 )
-
-

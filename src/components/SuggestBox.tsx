@@ -5,7 +5,7 @@ import {makeStyles} from '@material-ui/styles'
 import {lightBlue} from '@material-ui/core/colors'
 import SuggestItem from './SuggestItem'
 
-const OFFSET_Y = 26
+const OFFSET_Y = 29
 const OFFSET_X = 33
 const SUGGEST_BOX_Y_OFFSET = 45
 type Props = {
@@ -34,8 +34,8 @@ const useStyle = makeStyles({
         '100%': {opacity: 1},
     },
     list: {
-        padding: 0
-    }
+        padding: 0,
+    },
 })
 
 const SuggestBox: React.FC<Props> = (props) => {
@@ -43,7 +43,7 @@ const SuggestBox: React.FC<Props> = (props) => {
     const left = props.x + OFFSET_X
     const [inputText, suggestWords, selectWordIndex, enterSuggest] = useSuggest(
         props.onWordSelected,
-        props.onControlKeyDown
+        props.onControlKeyDown,
     )
     const c = useStyle()
 
@@ -52,7 +52,6 @@ const SuggestBox: React.FC<Props> = (props) => {
         top,
         left,
     }
-
 
     return (
         <>

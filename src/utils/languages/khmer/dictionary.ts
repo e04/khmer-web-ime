@@ -1,5 +1,5 @@
-import {WordDictionary} from "../../wordList/interface";
+import { WordDictionary } from '../../wordList/interface'
 
 export const dictionary: WordDictionary = {
-    'អ': ['ឲ្យ']
+    អ: ['ឲ្យ'],
 }
