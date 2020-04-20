@@ -1,6 +1,6 @@
-import React, {useRef, forwardRef, useImperativeHandle} from 'react'
-import {Box, Paper} from '@material-ui/core'
-import {makeStyles} from '@material-ui/styles'
+import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import { Box, Paper } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 import SuggestBox from './SuggestBox'
 import useEditor from '../hooks/editorHook'
 import ToolBar from './Toolbar'
@@ -49,13 +49,13 @@ const Editor: React.FC<Props> = (props) => {
     return (
         <Paper
             className={c.root}
-            style={{position: 'relative'}}
+            style={{ position: 'relative' }}
             elevation={10}
         >
-            <Box p={4} className={c.box} style={{position: 'relative'}}>
+            <Box p={4} className={c.box} style={{ position: 'relative' }}>
                 <textarea
                     className={c.textarea}
-                    style={{resize: 'none'}}
+                    style={{ resize: 'none' }}
                     ref={$textarea}
                     value={textareaValue}
                     readOnly

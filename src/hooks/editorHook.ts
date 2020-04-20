@@ -1,4 +1,4 @@
-import React, {RefObject, useCallback, useEffect, useState} from 'react'
+import React, { RefObject, useCallback, useEffect, useState } from 'react'
 import getCaretCoordinates from 'textarea-caret'
 
 const LOCAL_STORAGE_SAVE_KEY = 'LOCAL_STORAGE_SAVE_KEY'
@@ -10,9 +10,9 @@ const useEditor = (
     (word: string) => void,
     (e: KeyboardEvent) => void,
     () => void,
-    () => void,
+    () => void
 ] => {
-    const [caretPosition, setCaretPosition] = useState({x: 0, y: 0})
+    const [caretPosition, setCaretPosition] = useState({ x: 0, y: 0 })
     const [textareaValue, setTextareaValue] = useState('')
 
     const dispatchFocusTextarea = useCallback(() => {
@@ -30,8 +30,8 @@ const useEditor = (
             const end = textarea.selectionEnd
             setTextareaValue(
                 textareaValue.substring(0, start) +
-                word +
-                textareaValue.substring(end, textareaValue.length)
+                    word +
+                    textareaValue.substring(end, textareaValue.length)
             )
             textarea.selectionEnd = end + word.length
             textarea.dispatchEvent(new Event('input'))
@@ -48,7 +48,7 @@ const useEditor = (
         const end = textarea.selectionEnd
         setTextareaValue(
             textareaValue.substring(0, start - 1) +
-            textareaValue.substring(end, textareaValue.length)
+                textareaValue.substring(end, textareaValue.length)
         )
         textarea.selectionEnd = start - 1
         textarea.dispatchEvent(new Event('input'))
@@ -107,7 +107,7 @@ const useEditor = (
         if (textarea == null) return
         const calcCaretPosition = () => {
             const caret = getCaretCoordinates(textarea, textarea.selectionEnd)
-            setCaretPosition({x: caret.left, y: caret.top})
+            setCaretPosition({ x: caret.left, y: caret.top })
         }
         textarea.addEventListener('input', calcCaretPosition)
         textarea.addEventListener('click', calcCaretPosition)
@@ -116,9 +116,8 @@ const useEditor = (
             textarea.removeEventListener('input', calcCaretPosition)
             textarea.removeEventListener('click', calcCaretPosition)
             textarea.removeEventListener('blur', dispatchFocusTextarea)
-
         }
-    }, [$textarea, caretPosition])
+    }, [$textarea, caretPosition, dispatchFocusTextarea])
 
     useEffect(() => {
         const saveData: string | null = localStorage.getItem(

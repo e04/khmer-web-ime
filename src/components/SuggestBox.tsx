@@ -1,8 +1,8 @@
-import React, {useCallback} from 'react'
-import {Box, Paper, ListItem, List} from '@material-ui/core'
+import React, { useCallback } from 'react'
+import { Box, Paper, ListItem, List } from '@material-ui/core'
 import useSuggest from '../hooks/suggestHook'
-import {makeStyles} from '@material-ui/styles'
-import {lightBlue} from '@material-ui/core/colors'
+import { makeStyles } from '@material-ui/styles'
+import { lightBlue } from '@material-ui/core/colors'
 import SuggestItem from './SuggestItem'
 
 const OFFSET_Y = 29
@@ -27,11 +27,11 @@ const useStyle = makeStyles({
         opacity: 1,
     },
     '@keyframes blink': {
-        '0%': {opacity: 1},
-        '49%': {opacity: 1},
-        '50%': {opacity: 0},
-        '99%': {opacity: 0},
-        '100%': {opacity: 1},
+        '0%': { opacity: 1 },
+        '49%': { opacity: 1 },
+        '50%': { opacity: 0 },
+        '99%': { opacity: 0 },
+        '100%': { opacity: 1 },
     },
     list: {
         padding: 0,
@@ -43,7 +43,7 @@ const SuggestBox: React.FC<Props> = (props) => {
     const left = props.x + OFFSET_X
     const [inputText, suggestWords, selectWordIndex, enterSuggest] = useSuggest(
         props.onWordSelected,
-        props.onControlKeyDown,
+        props.onControlKeyDown
     )
     const c = useStyle()
 

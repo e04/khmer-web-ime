@@ -1,18 +1,18 @@
-import {useCallback, useEffect, useState} from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import KeyMapper from '../utils/keyMaps/KeyMapper'
-import {KeyTranslator} from '../utils/keyMaps/interface'
-import {keyMap} from '../utils/languages/khmer/keyMap'
-import {WordSearcher} from '../utils/wordList/WordSearcher'
-import {wordList} from '../utils/languages/khmer/wordList'
-import {WordList} from '../utils/wordList/interface'
-import {dictionary} from '../utils/languages/khmer/dictionary'
+import { KeyTranslator } from '../utils/keyMaps/interface'
+import { keyMap } from '../utils/languages/khmer/keyMap'
+import { WordSearcher } from '../utils/wordList/WordSearcher'
+import { wordList } from '../utils/languages/khmer/wordList'
+import { WordList } from '../utils/wordList/interface'
+import { dictionary } from '../utils/languages/khmer/dictionary'
 
 const keyTranslator: KeyTranslator = new KeyMapper(keyMap)
 const wordSearcher: WordSearcher = new WordSearcher(wordList, dictionary)
 
 const useSuggest = (
     onWordSelected: (word: string) => void,
-    onControlKeyDown: (e: KeyboardEvent) => void,
+    onControlKeyDown: (e: KeyboardEvent) => void
 ): [string, WordList, number, (index: number) => void] => {
     const [inputText, setInputText] = useState('')
     const [suggestWords, setSuggestWord] = useState<WordList>([])
