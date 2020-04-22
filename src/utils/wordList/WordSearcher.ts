@@ -16,7 +16,7 @@ export class WordSearcher implements IWordSearcher {
     }
 
     async search(targetWord: string): Promise<WordList> {
-        // eslint-disable-next-line prefer-const
+        /* eslint  prefer-const: 0 */
         let [
             prefixResult,
             similarResult,
