@@ -29,6 +29,10 @@ const IncompatibleAlert: React.FC = () => {
                         <a href="https://www.google.com/chrome/">
                             Google Chrome
                         </a>{' '}
+                        or{' '}
+                        <a href="https://www.microsoft.com/edge/">
+                            Microsoft Edge
+                        </a>{' '}
                         on PC.
                     </Typography>
                 </Grid>
@@ -122,7 +126,7 @@ const IncompatibleAlert: React.FC = () => {
                 </Grid>
                 <Grid container item justify="center" xs={12}>
                     <Grid item>
-                        <Typography>https://bit.ly/3cv1yeZ</Typography>
+                        <Typography>bit.ly/3cv1yeZ</Typography>
                     </Grid>
                 </Grid>
             </Grid>

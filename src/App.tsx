@@ -1,12 +1,18 @@
+import 'react-app-polyfill/ie11'
+import 'react-app-polyfill/stable'
 import React, { useCallback, useState } from 'react'
 import { Box, Container } from '@material-ui/core'
 import Editor from './components/Editor'
 import Help from './components/Help'
 import IncompatibleAlert from './components/IncompatibleAlert'
 
+const isPC =
+    window.navigator.userAgent.search(
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+    ) === -1
 const isChrome = !!navigator.userAgent.match('Chrome')
-const isNotAndroid = !navigator.userAgent.match('Android')
-const isCompatible = isChrome && isNotAndroid
+const isNewEdge = !!navigator.userAgent.match('Edg')
+const isCompatible = isPC && (isChrome || isNewEdge)
 
 const App: React.FC = () => {
     const [isOpenHelp, setHelpState] = useState(false)
