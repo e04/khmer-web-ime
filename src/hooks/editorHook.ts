@@ -1,7 +1,11 @@
 import React, { RefObject, useCallback, useEffect, useState } from 'react'
 import getCaretCoordinates from 'textarea-caret'
+import HistoryManager from '../utils/HistoryManager'
+import LocalStorageManager from '../utils/LocalStorageManager'
 
-const LOCAL_STORAGE_SAVE_KEY = 'LOCAL_STORAGE_SAVE_KEY'
+const historyManager = new HistoryManager<string>()
+const localStorageManager = new LocalStorageManager('LOCAL_STORAGE_SAVE_KEY')
+
 const useEditor = (
     $textarea: RefObject<HTMLTextAreaElement>
 ): [
@@ -10,10 +14,38 @@ const useEditor = (
     (word: string) => void,
     (e: KeyboardEvent) => void,
     () => void,
+    () => void,
+    () => void,
     () => void
 ] => {
     const [caretPosition, setCaretPosition] = useState({ x: 0, y: 0 })
     const [textareaValue, setTextareaValue] = useState('')
+
+    const historyControl = useCallback(
+        (type: 'UNDO' | 'REDO') => {
+            const textarea = $textarea.current
+            if (textarea == null) return
+
+            const result =
+                type === 'UNDO' ? historyManager.undo() : historyManager.redo()
+            if (!result) return
+
+            setTextareaValue(result)
+
+            setTimeout(() => {
+                textarea.dispatchEvent(new Event('input'))
+            }, 0)
+        },
+        [$textarea]
+    )
+
+    const undo = useCallback(() => {
+        historyControl('UNDO')
+    }, [historyControl])
+
+    const redo = useCallback(() => {
+        historyControl('REDO')
+    }, [historyControl])
 
     const dispatchFocusTextarea = useCallback(() => {
         setTimeout(() => {
@@ -28,14 +60,15 @@ const useEditor = (
             if (textarea == null) return
             const start = textarea.selectionStart
             const end = textarea.selectionEnd
-            setTextareaValue(
+            const newValue =
                 textareaValue.substring(0, start) +
-                    word +
-                    textareaValue.substring(end, textareaValue.length)
-            )
+                word +
+                textareaValue.substring(end, textareaValue.length)
+            setTextareaValue(newValue)
             textarea.selectionEnd = end + word.length
             textarea.dispatchEvent(new Event('input'))
-            localStorage.setItem(LOCAL_STORAGE_SAVE_KEY, textareaValue)
+            localStorageManager.save(newValue)
+            historyManager.push(newValue)
         },
         [$textarea, textareaValue]
     )
@@ -52,6 +85,7 @@ const useEditor = (
         )
         textarea.selectionEnd = start - 1
         textarea.dispatchEvent(new Event('input'))
+        historyManager.push(textareaValue)
     }, [$textarea, textareaValue])
 
     const moveCaret = useCallback(
@@ -75,7 +109,7 @@ const useEditor = (
 
     const onControlKeyDown = useCallback(
         (e: KeyboardEvent) => {
-            switch (e.code) {
+            switch (e.key) {
                 case 'Backspace':
                     backspace()
                     break
@@ -85,18 +119,28 @@ const useEditor = (
                 case 'ArrowRight':
                     moveCaret('RIGHT')
                     break
+                case 'z':
+                    if ((e.metaKey || e.ctrlKey) && !e.shiftKey) {
+                        undo()
+                    }
+                    if ((e.metaKey || e.ctrlKey) && e.shiftKey) {
+                        redo()
+                    }
+                    break
             }
         },
-        [backspace, moveCaret]
+        [backspace, moveCaret, redo, undo]
     )
 
     const deleteAll = useCallback(() => {
+        historyManager.push(textareaValue)
         setTextareaValue('')
+        localStorageManager.save('')
         setTimeout(() => {
             if ($textarea.current == null) return
             $textarea.current.dispatchEvent(new Event('click'))
         }, 0)
-    }, [$textarea])
+    }, [$textarea, textareaValue])
 
     const copyToClipBoard = useCallback(() => {
         navigator.clipboard.writeText(textareaValue)
@@ -120,9 +164,7 @@ const useEditor = (
     }, [$textarea, caretPosition, dispatchFocusTextarea])
 
     useEffect(() => {
-        const saveData: string | null = localStorage.getItem(
-            LOCAL_STORAGE_SAVE_KEY
-        )
+        const saveData: string | null = localStorageManager.load()
         if (saveData) {
             setTextareaValue(saveData)
         }
@@ -135,6 +177,8 @@ const useEditor = (
         onControlKeyDown,
         deleteAll,
         copyToClipBoard,
+        undo,
+        redo,
     ]
 }
 

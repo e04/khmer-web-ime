@@ -43,7 +43,14 @@ const useSuggest = (
 
     const onDocumentKeyDown = useCallback(
         (e: KeyboardEvent) => {
-            if (e.metaKey || e.ctrlKey) return
+            console.log(e)
+
+            if (e.metaKey || e.ctrlKey) {
+                if (e.key === 'z') {
+                    onControlKeyDown(e)
+                }
+                return
+            }
             switch (e.key) {
                 case 'Enter': {
                     let selectedWord: string

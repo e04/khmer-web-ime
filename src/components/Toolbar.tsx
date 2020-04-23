@@ -1,14 +1,18 @@
-import React, { CSSProperties } from 'react'
-import { Box, Container, Fab, Grid, Typography } from '@material-ui/core'
+import React from 'react'
+import { Box, Fab, Grid } from '@material-ui/core'
 import DeleteForeverRounded from '@material-ui/icons/DeleteForeverRounded'
 import AssignmentReturnedRounded from '@material-ui/icons/AssignmentReturnedRounded'
 import HelpOutline from '@material-ui/icons/HelpOutline'
 import { makeStyles } from '@material-ui/styles'
+import UndoIcon from '@material-ui/icons/Undo'
+import RedoIcon from '@material-ui/icons/Redo'
 
 type Props = {
     deleteAll: () => void
     copyToClipBoard: () => void
     onClickHelpButton: () => void
+    undo: () => void
+    redo: () => void
 }
 
 const useStyle = makeStyles({
@@ -35,8 +39,18 @@ const ToolBar: React.FC<Props> = (props) => {
                     </Fab>
                 </Grid>
                 <Grid item>
+                    <Fab size="medium" onClick={props.undo}>
+                        <UndoIcon />
+                    </Fab>
+                </Grid>
+                <Grid item>
                     <Fab size="medium" onClick={props.onClickHelpButton}>
                         <HelpOutline />
+                    </Fab>
+                </Grid>
+                <Grid item>
+                    <Fab size="medium" onClick={props.redo}>
+                        <RedoIcon />
                     </Fab>
                 </Grid>
                 <Grid item>

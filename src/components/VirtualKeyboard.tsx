@@ -1,7 +1,8 @@
 import React from 'react'
 import { Box, Grid } from '@material-ui/core'
-import VirtualKeyboardKey from './VirtualKeyboardKey'
+import VirtualKeyboardKey, { KEY_SIZE } from './VirtualKeyboardKey'
 import { keyMap } from '../utils/languages/khmer/keyMap'
+import VirtualKeyboardSpecialKey from './VirtualKeyboardSpecialKey'
 
 const keyList = [
     [
@@ -63,57 +64,71 @@ const keyList = [
 
 const VirtualKeyboard: React.FC = () => {
     return (
-        <Box>
-            <Grid container spacing={1}>
-                <Grid container item justify="center" spacing={1}>
-                    {keyList[0].map(({ key, display }) => (
+        <Box style={{ display: 'flex' }}>
+            <Box style={{ width: KEY_SIZE * 17 + 'px' }}>
+                <Grid container spacing={1}>
+                    <Grid container item justify="center" spacing={1}>
+                        {keyList[0].map(({ key, display }) => (
+                            <Grid item key={key}>
+                                <VirtualKeyboardKey
+                                    keyType={key}
+                                    latin={display}
+                                    only={keyMap[key].only}
+                                    shift={keyMap[key].shift}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <Grid container item justify="center" spacing={1}>
+                        {keyList[1].map(({ key, display }) => (
+                            <Grid item key={key}>
+                                <VirtualKeyboardKey
+                                    keyType={key}
+                                    latin={display}
+                                    only={keyMap[key].only}
+                                    shift={keyMap[key].shift}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <Grid container item justify="center" spacing={1}>
+                        {keyList[2].map(({ key, display }) => (
+                            <Grid item key={key}>
+                                <VirtualKeyboardKey
+                                    keyType={key}
+                                    latin={display}
+                                    only={keyMap[key].only}
+                                    shift={keyMap[key].shift}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                    <Grid container item justify="center" spacing={1}>
                         <Grid item>
-                            <VirtualKeyboardKey
-                                keyType={key}
-                                latin={display}
-                                only={keyMap[key].only}
-                                shift={keyMap[key].shift}
+                            <VirtualKeyboardSpecialKey
+                                keyType="Backspace"
+                                label="Backspace"
                             />
                         </Grid>
-                    ))}
-                </Grid>
-                <Grid container item justify="center" spacing={1}>
-                    {keyList[1].map(({ key, display }) => (
+                        {keyList[3].map(({ key, display }) => (
+                            <Grid item key={key}>
+                                <VirtualKeyboardKey
+                                    keyType={key}
+                                    latin={display}
+                                    only={keyMap[key].only}
+                                    shift={keyMap[key].shift}
+                                />
+                            </Grid>
+                        ))}
                         <Grid item>
-                            <VirtualKeyboardKey
-                                keyType={key}
-                                latin={display}
-                                only={keyMap[key].only}
-                                shift={keyMap[key].shift}
+                            <VirtualKeyboardSpecialKey
+                                keyType="Enter"
+                                label="Enter"
                             />
                         </Grid>
-                    ))}
+                    </Grid>
                 </Grid>
-                <Grid container item justify="center" spacing={1}>
-                    {keyList[2].map(({ key, display }) => (
-                        <Grid item>
-                            <VirtualKeyboardKey
-                                keyType={key}
-                                latin={display}
-                                only={keyMap[key].only}
-                                shift={keyMap[key].shift}
-                            />
-                        </Grid>
-                    ))}
-                </Grid>
-                <Grid container item justify="center" spacing={1}>
-                    {keyList[3].map(({ key, display }) => (
-                        <Grid item>
-                            <VirtualKeyboardKey
-                                keyType={key}
-                                latin={display}
-                                only={keyMap[key].only}
-                                shift={keyMap[key].shift}
-                            />
-                        </Grid>
-                    ))}
-                </Grid>
-            </Grid>
+            </Box>
         </Box>
     )
 }

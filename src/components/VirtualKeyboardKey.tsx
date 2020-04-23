@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import {Box, Typography, Grid, Paper, Button} from '@material-ui/core'
-import {makeStyles} from '@material-ui/styles'
-import {grey} from "@material-ui/core/colors";
+import React, { useState } from 'react'
+import { Box, Typography, Grid, Paper, Button } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
+import { grey } from '@material-ui/core/colors'
 
 export const KEY_SIZE = 50
 
@@ -31,17 +31,18 @@ const useStyle = makeStyles({
     },
     latinBox: {
         width: '100%',
-        height: '100%'
+        height: '100%',
     },
     latin: {
         fontSize: KEY_SIZE * 0.8 + 'px',
         color: grey[300],
-        lineHeight: KEY_SIZE + 'px'
-    }
+        lineHeight: KEY_SIZE + 'px',
+    },
 })
 
 const triggerKeyDownEvent = (code: string, shiftKey: boolean) => {
-    return () => {
+    return (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
         const event = new KeyboardEvent('keydown', {
             code,
             shiftKey,
@@ -57,12 +58,13 @@ const VirtualKeyboardKey: React.FC<Props> = (props) => {
     const triggerShiftKey = triggerKeyDownEvent(props.keyType, true)
 
     return (
-        <Paper className={c.root} elevation={3} style={{position: 'relative'}}>
-            <Box className={c.latinBox} style={{position: 'absolute'}}>
-                <Typography
-                    className={c.latin}
-                    align="center"
-                >
+        <Paper
+            className={c.root}
+            elevation={3}
+            style={{ position: 'relative' }}
+        >
+            <Box className={c.latinBox} style={{ position: 'absolute' }}>
+                <Typography className={c.latin} align="center">
                     {props.latin}
                 </Typography>
             </Box>

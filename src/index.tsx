@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import { blue, grey } from '@material-ui/core/colors'
+import { grey } from '@material-ui/core/colors'
 
 const theme = createMuiTheme({
     palette: {

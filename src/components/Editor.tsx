@@ -44,6 +44,8 @@ const Editor: React.FC<Props> = (props) => {
         onControlKeyDown,
         deleteAll,
         copyToClipBoard,
+        undo,
+        redo,
     ] = useEditor($textarea)
 
     return (
@@ -72,6 +74,8 @@ const Editor: React.FC<Props> = (props) => {
                 deleteAll={deleteAll}
                 copyToClipBoard={copyToClipBoard}
                 onClickHelpButton={props.toggleHelp}
+                undo={undo}
+                redo={redo}
             />
         </Paper>
     )
