@@ -8,11 +8,12 @@ import IncompatibleAlert from './components/IncompatibleAlert'
 
 const isPC =
     window.navigator.userAgent.search(
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+        /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i
     ) === -1
 const isChrome = !!navigator.userAgent.match('Chrome')
+const isSafari = !!navigator.userAgent.match('Safari')
 const isNewEdge = !!navigator.userAgent.match('Edg')
-const isCompatible = isPC && (isChrome || isNewEdge)
+const isCompatible = isPC && (isChrome || isNewEdge || isSafari)
 
 const App: React.FC = () => {
     const [isOpenHelp, setHelpState] = useState(false)
