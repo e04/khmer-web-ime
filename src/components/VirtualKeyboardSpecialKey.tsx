@@ -7,6 +7,7 @@ import { KEY_SIZE } from './VirtualKeyboardKey'
 type Props = {
     keyType: string
     label: string
+    code: string
 }
 
 const useStyle = makeStyles({
@@ -32,11 +33,12 @@ const useStyle = makeStyles({
     },
 })
 
-const triggerKeyDownEvent = (code: string) => {
+const triggerKeyDownEvent = (key: string, code: string) => {
     return (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         const event = new KeyboardEvent('keydown', {
-            key: code,
+            key,
+            code,
         })
         document.dispatchEvent(event)
     }
@@ -45,7 +47,7 @@ const triggerKeyDownEvent = (code: string) => {
 const VirtualKeyboardSpecialKey: React.FC<Props> = (props) => {
     const c = useStyle()
 
-    const triggerKey = triggerKeyDownEvent(props.keyType)
+    const triggerKey = triggerKeyDownEvent(props.keyType, props.code)
 
     return (
         <Paper className={c.root} elevation={3}>

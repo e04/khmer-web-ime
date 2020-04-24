@@ -104,12 +104,6 @@ const VirtualKeyboard: React.FC = () => {
                         ))}
                     </Grid>
                     <Grid container item justify="center" spacing={1}>
-                        <Grid item>
-                            <VirtualKeyboardSpecialKey
-                                keyType="Backspace"
-                                label="Backspace"
-                            />
-                        </Grid>
                         {keyList[3].map(({ key, display }) => (
                             <Grid item key={key}>
                                 <VirtualKeyboardKey
@@ -120,10 +114,27 @@ const VirtualKeyboard: React.FC = () => {
                                 />
                             </Grid>
                         ))}
+                    </Grid>
+                    <Grid container item justify="center" spacing={1}>
+                        <Grid item>
+                            <VirtualKeyboardSpecialKey
+                                keyType="Backspace"
+                                label="Backspace"
+                                code="Backspace"
+                            />
+                        </Grid>
+                        <Grid item>
+                            <VirtualKeyboardSpecialKey
+                                keyType=" "
+                                label="Space / ្"
+                                code="Space"
+                            />
+                        </Grid>
                         <Grid item>
                             <VirtualKeyboardSpecialKey
                                 keyType="Enter"
                                 label="Enter"
+                                code="Enter"
                             />
                         </Grid>
                     </Grid>

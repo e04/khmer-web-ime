@@ -21,7 +21,7 @@ import { FaGithub } from 'react-icons/all'
 import MoodIcon from '@material-ui/icons/Mood'
 import PrivacyPolicy from './PrivacyPolicy'
 
-const HEIGHT = KEY_SIZE * 6.6 + 'px'
+const HEIGHT = KEY_SIZE * 7.6 + 'px'
 type Props = {
     toggleHelp: () => void
     show: boolean
