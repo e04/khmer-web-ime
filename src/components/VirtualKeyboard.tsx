@@ -126,7 +126,7 @@ const VirtualKeyboard: React.FC = () => {
                         <Grid item>
                             <VirtualKeyboardSpecialKey
                                 keyType=" "
-                                label="Space / ្"
+                                label="្"
                                 code="Space"
                             />
                         </Grid>
