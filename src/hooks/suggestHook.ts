@@ -35,8 +35,6 @@ const useSuggest = (
 
     const onDocumentKeyDown = useCallback(
         (e: KeyboardEvent) => {
-            console.log(e)
-
             if (e.metaKey || e.ctrlKey) {
                 if (e.key === 'z') {
                     onControlKeyDown(e)
