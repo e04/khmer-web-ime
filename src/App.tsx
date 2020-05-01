@@ -5,15 +5,7 @@ import { Box, Container } from '@material-ui/core'
 import Editor from './components/Editor'
 import Help from './components/Help'
 import IncompatibleAlert from './components/IncompatibleAlert'
-
-const isPC =
-    window.navigator.userAgent.search(
-        /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i
-    ) === -1
-const isChrome = !!navigator.userAgent.match('Chrome')
-const isSafari = !!navigator.userAgent.match('Safari')
-const isNewEdge = !!navigator.userAgent.match('Edg')
-const isCompatible = isPC && (isChrome || isNewEdge || isSafari)
+import { isCompatible } from './utils/browserCompatibility'
 
 const App: React.FC = () => {
     const [isOpenHelp, setHelpState] = useState(false)
