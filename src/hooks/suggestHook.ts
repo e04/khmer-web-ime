@@ -1,14 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import KeyMapper from '../utils/keyMaps/KeyMapper'
-import { KeyTranslator } from '../utils/keyMaps/interface'
-import { keyMap } from '../utils/languages/khmer/keyMap'
-import { WordSearcher } from '../utils/wordList/WordSearcher'
-import { wordList } from '../utils/languages/khmer/wordList'
 import { WordList } from '../utils/wordList/interface'
-import { dictionary } from '../utils/languages/khmer/dictionary'
-
-const keyTranslator: KeyTranslator = new KeyMapper(keyMap)
-const wordSearcher: WordSearcher = new WordSearcher(wordList, dictionary)
+import { languageService } from '../utils/languages/khmer/service'
 
 const useSuggest = (
     onWordSelected: (word: string) => void,
@@ -37,7 +29,7 @@ const useSuggest = (
     )
 
     const search = useCallback(async (word: string) => {
-        setSuggestWord(await wordSearcher.search(word))
+        setSuggestWord(await languageService.wordSearcher.search(word))
         setSelectWordIndex(-1)
     }, [])
 
@@ -101,7 +93,8 @@ const useSuggest = (
                 case 'Shift':
                     return
                 default: {
-                    const newText = inputText + keyTranslator.translate(e)
+                    const newText =
+                        inputText + languageService.keyTranslator.translate(e)
                     setInputText(newText)
                     search(newText)
                 }
