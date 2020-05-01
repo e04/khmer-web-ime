@@ -15,7 +15,6 @@
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",
     "@types/textarea-caret": "^3.0.0",
-    "fuzzysort": "^1.1.4",
     "react": "^16.13.1",
     "react-contenteditable": "^3.3.4",
     "react-dom": "^16.13.1",
