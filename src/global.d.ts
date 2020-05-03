@@ -1,5 +1,6 @@
 // global.d.ts
 declare module 'workerize-loader!*' {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     type AnyFunction = (...args: any[]) => any
     type Async<F extends AnyFunction> = (
         ...args: Parameters<F>
