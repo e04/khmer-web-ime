@@ -1,7 +1,6 @@
 import React from 'react'
-import { Box, Typography, Paper, Button } from '@material-ui/core'
+import { Typography, Paper, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import { grey } from '@material-ui/core/colors'
 import { KEY_SIZE } from './VirtualKeyboardKey'
 
 type Props = {
@@ -34,7 +33,7 @@ const useStyle = makeStyles({
 })
 
 const triggerKeyDownEvent = (key: string, code: string) => {
-    return (e: React.MouseEvent<HTMLButtonElement>) => {
+    return (e: React.MouseEvent<HTMLButtonElement>): void => {
         e.preventDefault()
         const event = new KeyboardEvent('keydown', {
             key,

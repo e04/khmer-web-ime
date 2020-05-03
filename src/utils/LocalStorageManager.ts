@@ -5,7 +5,7 @@ export default class LocalStorageManager {
         return localStorage.getItem(this.KEY)
     }
 
-    save(data: string) {
+    save(data: string): void {
         localStorage.setItem(this.KEY, data)
     }
 }

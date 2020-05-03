@@ -9,7 +9,6 @@ import {
     DialogContentText,
     DialogTitle,
     Grid,
-    Link,
     Paper,
     Typography,
 } from '@material-ui/core'
@@ -42,11 +41,11 @@ const Help: React.FC<Props> = (props) => {
     const c = useStyles()
     const [open, setOpen] = React.useState(false)
 
-    const handleClickOpen = () => {
+    const handleClickOpen = (): void => {
         setOpen(true)
     }
 
-    const handleClose = () => {
+    const handleClose = (): void => {
         setOpen(false)
     }
 

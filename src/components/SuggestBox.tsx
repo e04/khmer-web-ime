@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react'
-import { Box, Paper, ListItem, List } from '@material-ui/core'
+import React from 'react'
+import { Box, Paper, List } from '@material-ui/core'
 import useSuggest from '../hooks/suggestHook'
 import { makeStyles } from '@material-ui/styles'
 import { lightBlue } from '@material-ui/core/colors'

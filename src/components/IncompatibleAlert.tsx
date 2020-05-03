@@ -6,7 +6,6 @@ import ComputerIcon from '@material-ui/icons/Computer'
 import CheckIcon from '@material-ui/icons/Check'
 import {
     FaChrome,
-    FaEdge,
     FaSafari,
     FaInternetExplorer,
     FaFirefox,

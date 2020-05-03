@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Box, Typography, Grid, Paper, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { grey } from '@material-ui/core/colors'
@@ -41,7 +41,7 @@ const useStyle = makeStyles({
 })
 
 const triggerKeyDownEvent = (code: string, shiftKey: boolean) => {
-    return (e: React.MouseEvent<HTMLButtonElement>) => {
+    return (e: React.MouseEvent<HTMLButtonElement>): void => {
         e.preventDefault()
         const event = new KeyboardEvent('keydown', {
             code,

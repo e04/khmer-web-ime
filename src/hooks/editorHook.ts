@@ -1,4 +1,4 @@
-import React, { RefObject, useCallback, useEffect, useState } from 'react'
+import { RefObject, useCallback, useEffect, useState } from 'react'
 import getCaretCoordinates from 'textarea-caret'
 import HistoryManager from '../utils/HistoryManager'
 import LocalStorageManager from '../utils/LocalStorageManager'
@@ -10,7 +10,10 @@ const useEditor = (
     $textarea: RefObject<HTMLTextAreaElement>
 ): [
     string,
-    { x: number, y: number },
+    {
+        x: number
+        y: number
+    },
     (word: string) => void,
     (e: KeyboardEvent) => void,
     () => void,
@@ -149,14 +152,14 @@ const useEditor = (
     useEffect(() => {
         const textarea = $textarea.current
         if (textarea == null) return
-        const calcCaretPosition = () => {
+        const calcCaretPosition = (): void => {
             const caret = getCaretCoordinates(textarea, textarea.selectionEnd)
             setCaretPosition({ x: caret.left, y: caret.top })
         }
         textarea.addEventListener('input', calcCaretPosition)
         textarea.addEventListener('click', calcCaretPosition)
         textarea.addEventListener('blur', dispatchFocusTextarea)
-        return () => {
+        return (): void => {
             textarea.removeEventListener('input', calcCaretPosition)
             textarea.removeEventListener('click', calcCaretPosition)
             textarea.removeEventListener('blur', dispatchFocusTextarea)

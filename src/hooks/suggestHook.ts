@@ -111,7 +111,7 @@ const useSuggest = (
 
     useEffect(() => {
         document.addEventListener('keydown', onDocumentKeyDown)
-        return () => {
+        return (): void => {
             document.removeEventListener('keydown', onDocumentKeyDown)
         }
     }, [inputText, onDocumentKeyDown])

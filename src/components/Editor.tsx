@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useRef } from 'react'
 import { Box, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import SuggestBox from './SuggestBox'
