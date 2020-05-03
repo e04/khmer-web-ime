@@ -9,7 +9,7 @@ export class WordSearcher implements IWordSearcher {
     private readonly worker: unknown
 
     constructor(
-        private wordList: WordList,
+        private wordList: () => WordList,
         private wordDictionary?: WordDictionary
     ) {
         this.worker = createWorker<typeof Worker>()
@@ -39,14 +39,14 @@ export class WordSearcher implements IWordSearcher {
     private async matchPrefix(targetWord: string): Promise<WordList> {
         return (this.worker as typeof Worker).matchPrefix(
             targetWord,
-            this.wordList
+            this.wordList()
         )
     }
 
     private async matchSimilar(targetWord: string): Promise<WordList> {
         return (this.worker as typeof Worker).matchSimilar(
             targetWord,
-            this.wordList
+            this.wordList()
         )
     }
 
