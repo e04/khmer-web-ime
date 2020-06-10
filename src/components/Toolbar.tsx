@@ -23,7 +23,7 @@ const useStyle = makeStyles({
     },
 })
 
-const ToolBar: React.FC<Props> = (props) => {
+const ToolBar = React.memo<Props>((props) => {
     const c = useStyle()
     return (
         <Box p={3} style={{ position: 'absolute' }} className={c.root}>
@@ -66,6 +66,6 @@ const ToolBar: React.FC<Props> = (props) => {
             </Grid>
         </Box>
     )
-}
+})
 
 export default ToolBar

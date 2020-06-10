@@ -37,7 +37,7 @@ const useStyles = makeStyles({
     },
 })
 
-const Help: React.FC<Props> = (props) => {
+const Help = React.memo<Props>((props) => {
     const c = useStyles()
     const [open, setOpen] = React.useState(false)
 
@@ -114,6 +114,6 @@ const Help: React.FC<Props> = (props) => {
             </Dialog>
         </Paper>
     )
-}
+})
 
 export default Help

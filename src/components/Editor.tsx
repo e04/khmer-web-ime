@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     },
 })
 
-const Editor: React.FC<Props> = (props) => {
+const Editor = React.memo<Props>((props) => {
     const c = useStyles()
     const $textarea = useRef({} as HTMLTextAreaElement)
     const [
@@ -79,6 +79,6 @@ const Editor: React.FC<Props> = (props) => {
             />
         </Paper>
     )
-}
+})
 
 export default Editor

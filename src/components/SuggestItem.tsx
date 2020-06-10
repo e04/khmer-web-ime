@@ -18,7 +18,7 @@ const useStyle = makeStyles({
     },
 })
 
-const SuggestItem: React.FC<Props> = (props) => {
+const SuggestItem = React.memo<Props>((props) => {
     const c = useStyle(props.isSelected)
     const onClick = (): void => {
         props.enterSuggest(props.index)
@@ -34,6 +34,6 @@ const SuggestItem: React.FC<Props> = (props) => {
             {props.word}
         </ListItem>
     )
-}
+})
 
 export default SuggestItem

@@ -38,7 +38,7 @@ const useStyle = makeStyles({
     },
 })
 
-const SuggestBox: React.FC<Props> = (props) => {
+const SuggestBox = React.memo<Props>((props) => {
     const top = props.y + OFFSET_Y
     const left = props.x + OFFSET_X
     const [inputText, suggestWords, selectWordIndex, enterSuggest] = useSuggest(
@@ -96,6 +96,6 @@ const SuggestBox: React.FC<Props> = (props) => {
             </Paper>
         </>
     )
-}
+})
 
 export default SuggestBox
