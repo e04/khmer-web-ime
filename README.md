@@ -10,6 +10,12 @@ This application makes you easily to type Khmer by suggestion.
 
 No configure is required for your computers. Just only open the URL and type your keyboard.
 
+## Feature
+
+- Using Web Worker for fluent UX
+
+- Smart suggestion with multilple correction algorithms
+
 ## Requirements
 
 The latest version of Google Chrome is required. 
