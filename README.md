@@ -28,7 +28,7 @@ This application is not only for Khmer. You can easily customise for another agg
 
 ## TODO
 
-- [ ] use binary search insetead of liner search with suggestion algolithm
+- [ ] use binary search insetead of liner search with suggestion algorithm
 - [ ] add some other language such as Lao, Myanmar that have is no input software. 
 
 ## For Development
