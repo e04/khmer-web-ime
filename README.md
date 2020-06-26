@@ -26,6 +26,11 @@ Mobile is unsupported.
 
 This application is not only for Khmer. You can easily customise for another agglutinative languages.
 
+## TODO
+
+- [ ] use binary search insetead of liner search with suggestion algolithm
+- [ ] add some other language such as Lao, Myanmar that have is no input software. 
+
 ## For Development
 
 ### Install
